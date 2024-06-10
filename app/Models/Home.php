@@ -10,7 +10,13 @@ class Home extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name',
+        'title_1',
+        'title_2',
+        'title_3',
+        'button_left',
+        'button_right',
+        'about_me_title',
+        'about_me_description',
         'image'
     ];
 }

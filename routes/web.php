@@ -6,6 +6,7 @@ use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\FooterController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PublicController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,12 +24,13 @@ Route::get('/', function () {
     return view('/layouts.public.home');
 })->name('home_public');
 
+Route::get('/',[PublicController::class, 'index'])->name('home_public');
+
 Route::get('/profile_public', [ProfileController::class, 'index'])->name('profile_public');
 
 Route::get('/project_public', [ProjectController::class, 'index'])->name('project_public');
 
 Route::get('/contact_public', [ContactController::class,'index'])->name('contact_public');
-
 
 
 Route::get('/admin', function () {
@@ -61,9 +63,14 @@ Route::middleware('auth')->group(function () {
     });
 
     Route::resource('/admin/home', HomeController::class);
-
-
+    Route::get('admin/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home.index');
+    Route::get('admin/home/create', [App\Http\Controllers\HomeController::class, 'create'])->name('home.create');
+    Route::post('admin/home/create', [App\Http\Controllers\HomeController::class, 'store'])->name('home.store');
+    Route::get('admin/home/{home}/edit', [App\Http\Controllers\HomeController::class, 'edit'])->name('home.edit');
+    Route::put('admin/home/{home}/update', [App\Http\Controllers\HomeController::class, 'update'])->name('home.update');
+    Route::delete('admin/home/{home}/delete', [App\Http\Controllers\HomeController::class, 'destroy'])->name('home.destroy');
 
 
     Route::get('/admin/profile', [App\Http\Controllers\AuthController::class, 'profile'])->name('profile');
     });
+

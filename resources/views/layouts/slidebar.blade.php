@@ -18,33 +18,59 @@
         <span>Dashboard</span></a>
     </li>
 
+    <!-- Divider -->
+    <hr class="sidebar-divider">
+
+    <!-- Heading -->
+    <div class="sidebar-heading">
+        {{ __('Menu') }}
+    </div>
+
+    <!-- home -->
     <li class="nav-item">
       <a class="nav-link" href="{{ route('home.index') }}">
-        <i class="fas fa-fw fa-tachometer-alt"></i>
+        <i class="fas fa-home"></i>
         <span>Home</span></a>
     </li>
 
-    <li class="nav-item">
-        <a class="nav-link" href="profil">
-          <i class="fas fa-fw fa-tachometer-alt"></i>
-          <span>Profile</span></a>
+
+    <!-- Profile -->
+    <li class="nav-item active">
+        <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true"
+            aria-controls="collapseTwo">
+            <i class="fas fa-fw fa-user"></i>
+            <span>Profile</span>
+        </a>
+        <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo"
+            data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header">Custom Components:</h6>
+                <a class="collapse-item active" href="profil"><i class="fa fa-history"></i><span>Experience</span></a>
+                <a class="collapse-item active" href="profil"><i class="fas fa-graduation-cap"></i><span>Education</span></a>
+                <a class="collapse-item active" href="profil"><i class="fas fa-laptop-code"></i><span>Profesional Skill</span></a>
+                <a class="collapse-item active" href="profil"><i class="fa fa-language"></i><span>Languages</span></a>
+            </div>
+        </div>
     </li>
 
+    <!-- Message -->
     <li class="nav-item">
         <a class="nav-link" href="/massa">
-          <i class="fas fa-fw fa-tachometer-alt"></i>
+          <i class="far fa-comments"></i>
           <span>Message</span></a>
     </li>
 
+    <!-- Admin -->
     <li class="nav-item">
       <a class="nav-link" href="/profile">
-        <i class="fas fa-fw fa-tachometer-alt"></i>
+        <i class=" 	fas fa-user-tie"></i>
         <span>admin</span></a>
     </li>
 
+    <!-- Link Footers -->
     <li class="nav-item">
       <a class="nav-link" href="{{ route ('footers') }}">
-        <i class="fas fa-fw fa-tachometer-alt"></i>
+        <i class="fas fa-link"></i>
         <span>Link Footers</span></a>
     </li>
 
@@ -56,5 +82,5 @@
       <button class="rounded-circle border-0" id="sidebarToggle"></button>
     </div>
 
-
   </ul>
+

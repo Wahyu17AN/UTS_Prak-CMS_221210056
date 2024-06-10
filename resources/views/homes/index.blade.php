@@ -5,7 +5,7 @@
 @section('contents')
     <div class="d-flex align-items-center justify-content-between">
         <h1 class="mb-0">List Foto</h1>
-        <a href="{{ route('home.create') }}" class="btn btn-primary">Add Foto</a>
+        <a href="{{ route('home.create') }}" class="btn btn-primary">Add Content Home</a>
     </div>
     <hr />
     @if(Session::has('success'))
@@ -16,22 +16,30 @@
     <table class="table table-hover">
         <thead class="table-primary">
             <tr>
-                <th>No</th>
-                <th>Image</th>
-                <th>Name</th>
-                <th width="280px">Action</th>
+                <th>Title 1</th>
+                <th>Title 2</th>
+                <th>Title 3</th>
+                <th>Button Left</th>
+                <th>Button Right</th>
+                <th>About Me Title</th>
+                <th>About Me Description</th>
+                <th>Profile Image</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>+
-        @foreach ($home as $home)
+        @foreach ($homes as $home)
         <tr>
-            <td>{{ ++$i }}</td>
+            <td>{{ $home->title_1}}</td>
+            <td>{{ $home->title_2}}</td>
+            <td>{{ $home->title_3}}</td>
+            <td>{{ $home->button_left }}</td>
+            <td>{{ $home->button_right }}</td>
+            <td>{{ $home->about_me_title }}</td>
+            <td>{{ $home->about_me_description }}</td>
             <td><img src="/images/{{ $home->image }}" width="100px"></td>
-            <td>{{ $home->name }}</td>
             <td>
                 <form action="{{ route('home.destroy',$home->id) }}" method="POST">
-
-                    <a class="btn btn-info" href="{{ route('home.show',$home->id) }}">Show</a>
 
                     <a class="btn btn-primary" href="{{ route('home.edit',$home->id) }}">Edit</a>
 

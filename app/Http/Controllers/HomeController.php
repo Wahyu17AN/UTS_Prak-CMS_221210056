@@ -11,17 +11,16 @@ use Illuminate\Support\Facades\File;
 
 class HomeController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      *
-     * @return response()
+     * @return View
      */
     public function index(): View
     {
-        $home = Home::latest()->paginate(5);
-
-        return view('homes.index',compact('home'))
-                    ->with('i', (request()->input('page', 1) - 1) * 5);
+        $homes = Home::all();
+        return view('homes.index', compact('homes'));
     }
 
     /**
@@ -38,8 +37,14 @@ class HomeController extends Controller
     public function store(Request $request): RedirectResponse
     {
         $request->validate([
-            'name' => 'required',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'title_1' => 'required',
+            'title_2' => 'required',
+            'title_3' => 'required',
+            'button_left' => 'required',
+            'button_right' => 'required',
+            'about_me_title' => 'required',
+            'about_me_description' => 'required',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
         ]);
 
         $input = $request->all();
@@ -54,7 +59,7 @@ class HomeController extends Controller
         Home::create($input);
 
         return redirect()->route('home.index')
-                        ->with('success','home created successfully.');
+                        ->with('success', 'Home created successfully.');
     }
 
     /**
@@ -62,7 +67,7 @@ class HomeController extends Controller
      */
     public function show(Home $home): View
     {
-        return view('homes.show',compact('home'));
+        return view('homes.show', compact('home'));
     }
 
     /**
@@ -70,7 +75,7 @@ class HomeController extends Controller
      */
     public function edit(Home $home): View
     {
-        return view('homes.edit',compact('home'));
+        return view('homes.edit', compact('home'));
     }
 
     /**
@@ -79,7 +84,14 @@ class HomeController extends Controller
     public function update(Request $request, Home $home): RedirectResponse
     {
         $request->validate([
-            'name' => 'required',
+            'title_1' => 'required',
+            'title_2' => 'required',
+            'title_3' => 'required',
+            'button_left' => 'required',
+            'button_right' => 'required',
+            'about_me_title' => 'required',
+            'about_me_description' => 'required',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
         ]);
 
         $input = $request->all();
@@ -89,14 +101,14 @@ class HomeController extends Controller
             $profileImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
             $image->move($destinationPath, $profileImage);
             $input['image'] = "$profileImage";
-        }else{
+        } else {
             unset($input['image']);
         }
 
         $home->update($input);
 
         return redirect()->route('home.index')
-                        ->with('success','data has been updated successfully.');
+                        ->with('success', 'Home updated successfully.');
     }
 
     /**
@@ -107,6 +119,6 @@ class HomeController extends Controller
         $home->delete();
 
         return redirect()->route('home.index')
-                        ->with('success','data has been deleted successfully.');
+                        ->with('success', 'Home deleted successfully.');
     }
 }
