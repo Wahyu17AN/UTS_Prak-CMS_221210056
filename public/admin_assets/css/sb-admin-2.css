@@ -212,6 +212,25 @@ table {
   border-collapse: collapse;
 }
 
+
+.table-primary{
+    animation: slideAnimation 20s infinite;
+}
+
+.table-responsive {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    white-space: nowrap;
+}
+
+.table-responsive table {
+    width: 100%;
+}
+
+.table-responsive th, .table-responsive td {
+    white-space: nowrap;
+}
+
 caption {
   padding-top: 0.75rem;
   padding-bottom: 0.75rem;

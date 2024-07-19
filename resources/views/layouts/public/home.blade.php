@@ -16,8 +16,8 @@
                    <div class="fs-3 fw-light text-muted">{{ $content->title_2 }}</div>
                    <h1 class="display-3 fw-bolder mb-5"><span class="text-gradient d-inline">{{ $content->title_3 }}</span></h1>
                    <div class="d-grid gap-3 d-sm-flex justify-content-sm-center justify-content-xxl-start mb-3">
-                       <a class="btn btn-primary btn-lg px-5 py-3 me-sm-3 fs-6 fw-bolder" href="#!">{{ $content->button_left}}</a>
-                       <a class="btn btn-outline-dark btn-lg px-5 py-3 fs-6 fw-bolder" href="#!">{{ $content->button_right }}</a>
+                       <a class="btn btn-primary btn-lg px-5 py-3 me-sm-3 fs-6 fw-bolder" href="{{ route ('profile_public') }}">{{ $content->button_left}}</a>
+                       <a class="btn btn-outline-dark btn-lg px-5 py-3 fs-6 fw-bolder" href="{{ route ('project_public') }}">{{ $content->button_right }}</a>
                    </div>
                    @else
                        <div class="badge bg-gradient-primary-to-secondary text-white mb-4"><div class="text-uppercase">Design &middot; Development &middot; Marketing</div></div>
@@ -37,7 +37,7 @@
                        <!-- TIP: For best results, use a photo with a transparent background like the demo example below-->
                        <!-- Watch a tutorial on how to do this on YouTube (link)-->
                        @if(! is_null($content))
-                       <img class="profile-img" src="/images/{{ $content->image }} " alt="Profile Image" with="850"/>
+                       <img class="profile-img" src="/images/home/{{ $content->image }} " alt="Profile Image" with="850"/>
                        @else
                        <img class="profile-img" src="{{ asset('assets/public/assets/BackgroundEraser_20240402_150238703.png') }} " alt="..." />
                        @endif
@@ -165,24 +165,13 @@
        <div class="row gx-5 justify-content-center">
            <div class="col-xxl-8">
                @if(! is_null($content))
-                   <div class="text-center my-5">
+                   <div class="text-center my-3">
                        <h2 class="display-5 fw-bolder"><span class="text-gradient d-inline">{{ $content->about_me_title }}</span></h2>
                        <p class="lead fw-light mb-4">{{ $content->about_me_description }}</p>
                        <div class="d-flex justify-content-center fs-2 gap-4">
-                           <a class="text-gradient" href="#!"><i class="bi bi-twitter"></i></a>
-                           <a class="text-gradient" href="#!"><i class="bi bi-linkedin"></i></a>
-                           <a class="text-gradient" href="#!"><i class="bi bi-github"></i></a>
-                       </div>
-                   </div>
-               @else
-                   <div class="text-center my-5">
-                       <h2 class="display-5 fw-bolder"><span class="text-gradient d-inline">About Me</span></h2>
-                       <p class="lead fw-light mb-4">My name is Wahyu Adi Nugroho</p>
-                       <p class="text-muted">I am an active student from the Department of Information Systems, Faculty of Information Technology, Mercy Buana University Yogyakarta</p>
-                       <div class="d-flex justify-content-center fs-2 gap-4">
-                           <a class="text-gradient" href="#!"><i class="bi bi-twitter"></i></a>
-                           <a class="text-gradient" href="#!"><i class="bi bi-linkedin"></i></a>
-                           <a class="text-gradient" href="#!"><i class="bi bi-github"></i></a>
+                        @foreach($socialMedia as $scm)
+                        <a class="text-gradient" href="{{ $scm->url }}" target="_blank"><i class="{{ $scm->name }}"></i></a>
+                        @endforeach
                        </div>
                    </div>
                @endif

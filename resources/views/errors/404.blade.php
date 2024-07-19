@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>404 - Error Page</title>
     <link href="{{ asset('/admin_assets/css/404.css') }}" rel="stylesheet" type="text/css" >
+    <script src="{{ asset('/admin_assets/js/404.js') }}"></script>
 
 </head>
 <body class="bg-purple">
